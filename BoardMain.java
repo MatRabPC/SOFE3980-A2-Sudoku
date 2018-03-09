@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -10,7 +11,7 @@ import javax.swing.JFrame;
 
 public class BoardMain {
 	
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws InterruptedException {
 
     	GameBoard gb = new GameBoard();
         JFrame frame = new JFrame("Easy Sudoku");
@@ -31,80 +32,121 @@ public class BoardMain {
         frame.pack();
         frame.setVisible(true);
         
-        //botTest();
+        botTest();
         
     }
 
-public static void botTest(){
-    	
-    	//simulate input from a user
+public static void botTest() throws InterruptedException{
+    	Random r = new Random();
     	Robot bot;
 		try {
 			bot = new Robot();
-			int mask = InputEvent.BUTTON1_MASK;
-			//click on the first box on the panel
-			bot.mouseMove(90, 102);
-			Thread.sleep(20);
-			bot.mousePress(mask);
-			bot.mouseRelease(mask);
-			Thread.sleep(100);
 			
-			//square[0][0]: valid number
-			bot.keyPress(KeyEvent.VK_3);
-			bot.keyRelease(KeyEvent.VK_3);
+			//move to first open box on the board
+			bot.keyPress(KeyEvent.VK_TAB);
+			bot.keyRelease(KeyEvent.VK_TAB);
+			Thread.sleep(20);
+			bot.keyPress(KeyEvent.VK_TAB);
+			bot.keyRelease(KeyEvent.VK_TAB);
+			Thread.sleep(20);
+			bot.keyPress(KeyEvent.VK_TAB);
+			bot.keyRelease(KeyEvent.VK_TAB);
 			Thread.sleep(20);
 			bot.keyPress(KeyEvent.VK_TAB);
 			bot.keyRelease(KeyEvent.VK_TAB);
 			Thread.sleep(20);
 			
+			//either press a key or tab over
+			//boolean check = botBoard.checkPuzzle();
+			boolean check = true;
 			
-			//square[1][0]: invalid letter
-			bot.keyPress(KeyEvent.VK_A);
-			bot.keyRelease(KeyEvent.VK_A);
-			Thread.sleep(20);
-			bot.keyPress(KeyEvent.VK_TAB);
-			bot.keyRelease(KeyEvent.VK_TAB);
-			Thread.sleep(20);
+			while (check != true){
+				int n = 1;
+				if (n == 1){
+					bot.keyPress(KeyEvent.VK_1);
+					bot.keyRelease(KeyEvent.VK_1);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 2){
+					bot.keyPress(KeyEvent.VK_2);
+					bot.keyRelease(KeyEvent.VK_2);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 3){
+					bot.keyPress(KeyEvent.VK_3);
+					bot.keyRelease(KeyEvent.VK_3);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 4){
+					bot.keyPress(KeyEvent.VK_4);
+					bot.keyRelease(KeyEvent.VK_4);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 5){
+					bot.keyPress(KeyEvent.VK_5);
+					bot.keyRelease(KeyEvent.VK_5);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 6){
+					bot.keyPress(KeyEvent.VK_6);
+					bot.keyRelease(KeyEvent.VK_6);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 7){
+					bot.keyPress(KeyEvent.VK_7);
+					bot.keyRelease(KeyEvent.VK_7);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 8){
+					bot.keyPress(KeyEvent.VK_8);
+					bot.keyRelease(KeyEvent.VK_8);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else if (n == 9){
+					bot.keyPress(KeyEvent.VK_9);
+					bot.keyRelease(KeyEvent.VK_9);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
+				else{
+					bot.keyPress(KeyEvent.VK_PERIOD);
+					bot.keyRelease(KeyEvent.VK_PERIOD);
+					Thread.sleep(200);
+					bot.keyPress(KeyEvent.VK_TAB);
+					bot.keyRelease(KeyEvent.VK_TAB);
+					Thread.sleep(20);
+				}
 			
-			//square[2][0]: valid number
-			bot.keyPress(KeyEvent.VK_NUMPAD9);
-			bot.keyRelease(KeyEvent.VK_NUMPAD9);
-			Thread.sleep(20);
-			bot.keyPress(KeyEvent.VK_TAB);
-			bot.keyRelease(KeyEvent.VK_TAB);
-			Thread.sleep(20);
-			
-			//square[3][0]: special key
-			bot.keyPress(KeyEvent.VK_ENTER);
-			bot.keyRelease(KeyEvent.VK_ENTER);
-			Thread.sleep(20);
-			bot.keyPress(KeyEvent.VK_TAB);
-			bot.keyRelease(KeyEvent.VK_TAB);
-			Thread.sleep(20);
-			
-			//square[4][0]: valid number to be replaced next step
-			bot.keyPress(KeyEvent.VK_5);
-			bot.keyRelease(KeyEvent.VK_5);
-			Thread.sleep(20);
-			bot.keyPress(KeyEvent.VK_TAB);
-			bot.keyRelease(KeyEvent.VK_TAB);
-			Thread.sleep(20);
-			
-			//square[4][0]: replace valid number
-			bot.keyPress(KeyEvent.VK_SHIFT);
-			bot.keyPress(KeyEvent.VK_TAB);
-			bot.keyRelease(KeyEvent.VK_TAB);
-			bot.keyRelease(KeyEvent.VK_SHIFT);
-			Thread.sleep(20);
-			bot.keyPress(KeyEvent.VK_9);
-			bot.keyRelease(KeyEvent.VK_9);
-			Thread.sleep(20);
+			}
 			
 			
 		} catch (AWTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
